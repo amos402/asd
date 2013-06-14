@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+您 Web 项目的发布/打包进程将使用此文件。您可以通过编辑此 MSBuild 文件
+来自定义该进程的行为。若要了解与此相关的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkID=208121。
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAS1yArrKNOk+DZJ3/EhRv6AAAAAACAAAAAAAQZgAAAAEAACAAAABMgc7gymr+WfxP1DTChFtV7Bjo704A1ZFYmeV+iT44KwAAAAAOgAAAAAIAACAAAABJmoucs93GDeXmEge9FquAWLZTzVqHC825haLGIbXYyCAAAADKicY9WAlGrcvZbw2z4u35aYGURPIr6oRezQQuxf/UPEAAAACuak120hiR4wTmG60cM+/1d0Za3uNEA9iAoTqWBw/lEbXwGXPiIK31iMRRbKEd22s8BlOfyIvfHYsVw1OC6yM3</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Global.asax">
+      <publishTime>06/14/2013 14:15:41</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>06/14/2013 14:15:59</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
