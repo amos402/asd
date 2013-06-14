@@ -4,6 +4,34 @@
     ViewBag.Title = "Details";
 }
 
+
+@using Blog.Models
+
+@helper DisplayUserNameById(int id)
+{
+    var ship = Membership.Provider as SimpleMembershipProvider;
+    string name = ship.GetUserNameFromId(id);
+    //Html.Display(name ?? "null");
+    string temp = name ?? "null";
+    <span>@temp</span>
+}
+
+@helper DisplayNickNameById(int id)
+{
+    var ship = Membership.Provider as SimpleMembershipProvider;
+    string name = ship.GetUserNameFromId(id);
+    using (BlogEntities db = new BlogEntities())
+    {
+        UserMeta user = db.UserMetas.Find(id);
+        if (user != null && user.NickName != null)
+        {
+            name = user.NickName;
+        }
+    }
+    string temp = name ?? "null";
+    <span>@temp</span>
+}
+
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
