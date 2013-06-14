@@ -28,7 +28,7 @@
             @foreach (var item in Model.Comments)
             {
                 <li>
-                    @Helper.DisplayUserNameById(item.UserId)
+                     <span>@Blog.Models.ModelHelper.GetUserNameForId(item.UserId)</span>
                     发表在
                     @{
                         Blog.Models.Post post = Model.Posts.SingleOrDefault((T)=>T.Id==item.PostId);
