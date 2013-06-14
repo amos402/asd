@@ -1,0 +1,112 @@
+﻿@model IEnumerable<Blog.Models.UserModel>
+
+@{
+    ViewBag.Title = "用户管理";
+}
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#manage-post").find("tr").hover(function () {
+                $(this).find(".post-menu").css("visibility", "visible");
+                $(this).css("background-color", " rgb(226, 226, 226)");
+            },
+
+            function () {
+                $(this).find(".post-menu").css("visibility", "hidden");
+                $(this).css("background-color", "rgb(239, 238, 239)");
+
+            }
+            )
+        })
+    </script>
+
+}
+
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("新建用户", "Register", "Account")
+</p>
+<table id="manage-post">
+    <tr>
+        <th>
+            <span>用户名</span>
+        </th>
+        <th>
+            <span>昵称</span>
+        </th>
+        <th>
+            <span>角色</span>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr id="@item.UserId">
+            <td class="title">
+                @Html.HiddenFor(modelItem => item.UserId)
+                  <img src="~/User/GetIcon/@item.UserId" height="32"/>
+                @Html.DisplayTextFor(modelItem => item.UserName)
+                <span class="post-menu">
+                    <span>
+                        @Html.ActionLink("编辑", "Edit", new { id = item.UserId })|
+                    </span>
+                    @if (!WebSecurity.IsCurrentUser(item.UserName))
+                    {
+                        <span>
+                            @Ajax.ActionLink("删除", "Delete", new { id = item.UserId }, new AjaxOptions
+                   {
+                       UpdateTargetId = item.UserId.ToString(),
+                       Confirm = "确定删除？",
+                       InsertionMode = InsertionMode.Replace
+                   })|
+                        </span>
+                    }
+
+                    <span>
+                        @Html.ActionLink("查看", "Details", new { id = item.UserId })
+                    </span>
+                </span>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NickName)
+            </td>
+            <td>
+                @if (item.Roles.Count() == 0)
+                {
+                    <span>用户</span>
+                }
+                else
+                {
+                    foreach (var roleName in item.Roles)
+                    {
+                        string name;
+                        switch (roleName)
+                        {
+                            case "Admin":
+                                name = "管理员";
+                                break;
+                            default:
+                                name = "用户";
+                                break;
+                        }
+                
+                
+                    <span>@name </span>
+                    }
+                }
+
+
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>
