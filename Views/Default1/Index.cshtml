@@ -1,0 +1,33 @@
+﻿@model MvcApplication1.Models.LoginModel
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        function Success() {
+            $("#text").append("     asdadad  ");
+        }
+
+
+    </script>
+
+}
+
+<h2>Index</h2>
+
+
+<label id="text">fuck </label>
+
+@using (Ajax.BeginForm(new AjaxOptions() { UpdateTargetId = "text", OnSuccess = "Success", InsertionMode= InsertionMode.Replace }))
+{
+    @Html.EditorFor(model => model.UserName);
+    
+    <input type="submit" />
+}
