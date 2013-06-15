@@ -1,4 +1,4 @@
-@model Blog.Models.Post
+Ôªø@model Blog.Models.Post
 
 @{
     ViewBag.Title = "Details";
@@ -11,7 +11,7 @@
         });
 
         function replyComment(commentId, userName) {
-            var str = "ªÿ∏¥" + userName;
+            var str = "ÂõûÂ§ç" + userName;
             $("#reply_for").text(str);
             $("#reply_commentId").val(commentId);
             $("#comment_form").hide(400);
@@ -26,7 +26,7 @@
         }
 
         function OnEditCommentSuccess(id) {
-            $("#comment_header_" + id).append("<span class='edit_success'>–ﬁ∏ƒ≥…π¶</span>");
+            $("#comment_header_" + id).append("<span class='edit_success'>‰øÆÊîπÊàêÂäü</span>");
             var msg = $("#comment_header_" + id).find(".edit_success");
             msg.hide();
             msg.show(400, hideMsg);
@@ -73,7 +73,7 @@
                  <input type='hidden' name='UserId' value='" + userId + "'/>\
                 <textarea name='Content'>" + contentText + "</textarea>\
                  <br />\
-                <input type='submit' onclick='deleteForm(" + id + ");' value='Ã·Ωª' />\
+                <input type='submit' onclick='deleteForm(" + id + ");' value='Êèê‰∫§' />\
                 </fieldset>\
                 </form>\
                 </div>";
@@ -104,8 +104,8 @@
 
 
             <div class="commemt">
-                <h2>°∂@Html.DisplayTextFor(model => model.Title)°∑…œ”–
-                @Html.DisplayTextFor(model => model.Comments.Count)Ãı∆¿¬€
+                <h2>„Ää@Html.DisplayTextFor(model => model.Title)„Äã‰∏äÊúâ
+                @Html.DisplayTextFor(model => model.Comments.Count)Êù°ËØÑËÆ∫
                 </h2>
                 <ol>
                     @foreach (var item in Model.Comments)
@@ -119,17 +119,17 @@
                                         <span>@name</span>
                                     }
 
-                                    <span class="date">∑¢±Ì”⁄  @Html.DisplayFor(model => item.Date)
+                                    <span class="date">ÂèëË°®‰∫é  @Html.DisplayFor(model => item.Date)
                                     </span>
                                     @if (WebSecurity.CurrentUserId == item.UserId || Roles.IsUserInRole("Admin"))
                                     {
-                                        <span><a href="javascript:void(0)" onclick="editComment(@item.Id)">±‡º≠</a></span>
+                                        <span><a href="javascript:void(0)" onclick="editComment(@item.Id)">ÁºñËæë</a></span>
                                     }
 
                                     @if (WebSecurity.CurrentUserId != item.UserId)
                                     {
                                         <span class="reply">
-                                            <a href="javascript:void(0)" onclick="replyComment(@(item.Id), '@name')">ªÿ∏¥</a>
+                                            <a href="javascript:void(0)" onclick="replyComment(@(item.Id), '@name')">ÂõûÂ§ç</a>
                                         </span>
                                     }
 
@@ -152,7 +152,7 @@
                                                 <header>
                                                     <img src="~/User/GetIcon/@reply.UserId" height="32"/>
                                                     <span>@Blog.Models.ModelHelper.GetNickNameForId(reply.UserId)</span>
-                                                    <span class="date">ªÿ∏¥ @Blog.Models.ModelHelper.GetNickNameForId(item.UserId) ”⁄ @Html.DisplayFor(model => reply.Date)
+                                                    <span class="date">ÂõûÂ§ç @Blog.Models.ModelHelper.GetNickNameForId(item.UserId) ‰∫é @Html.DisplayFor(model => reply.Date)
                                                     </span>
                                                     <br />
                                                 </header>
@@ -176,7 +176,7 @@
 
                 @using (Html.BeginForm("Create", "Comment", FormMethod.Post, new { id = "comment_form" }))
                 {
-                    <h4>∑¢±Ì∆¿¬€</h4>
+                    <h4>ÂèëË°®ËØÑËÆ∫</h4>
                     
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
@@ -184,12 +184,12 @@
                     @Html.TextArea("Comment.Content")
                     @Html.Hidden("Comment.PostId", Model.Id)
                   
-                    <input type="submit" value="∑¢±Ì∆¿¬€" />
+                    <input type="submit" value="ÂèëË°®ËØÑËÆ∫" />
                 }
 
                 @using (Html.BeginForm("CreateReply", "Comment", FormMethod.Post, new { id = "reply_form" }))
                 {
-                    <h4>∑¢±Ìªÿ∏¥</h4>
+                    <h4>ÂèëË°®ÂõûÂ§ç</h4>
                     
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
@@ -197,7 +197,7 @@
                     @Html.TextArea("Reply.Content")
                     @Html.Hidden("Reply.CommentId", null, new { id = "reply_commentId" })
                   
-                    <input type="submit" value="∑¢±Ìªÿ∏¥" />
+                    <input type="submit" value="ÂèëË°®ÂõûÂ§ç" />
                     <a href="javascript:void(0)" onclick="showCommentForm()"><span id="reply_for"></span></a>
                 }
 
