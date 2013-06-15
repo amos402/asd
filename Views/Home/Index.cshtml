@@ -1,146 +1,80 @@
-﻿@model Blog.Models.IndexModel
-
+﻿@model MvcApplication1.Models.LoginModel
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "My Todo List";
+}
+@functions{
+    public string GetAntiForgeryToken()
+    {
+        string cookieToken, formToken;
+        AntiForgery.GetTokens(null, out cookieToken, out formToken);
+        return cookieToken + ":" + formToken;                
+    }
 }
 
-@using Blog.Models
+<header>
+    <h1>@ViewBag.Title</h1>
+</header>
 
+<div id="main-content">
+@if (@User.Identity.IsAuthenticated)
+{
+    <p class="error" data-bind="text: error"></p>
+    <input id="antiForgeryToken" type="hidden" value="@GetAntiForgeryToken()" />
+    <button data-bind="click: addTodoList">Add Todo list</button>
 
-@*@section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>@ViewBag.Title.</h1>
-                <h2>@ViewBag.Message</h2>
-            </hgroup>
-            <p>
-                To learn more about ASP.NET MVC visit
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
-                If you have any questions about ASP.NET MVC visit
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
-            </p>
-        </div>
-    </section>
-}*@
+    <section id="lists" data-bind="foreach: todoLists, visible: todoLists().length > 0">
+        <article class="todoList">
+            <header>
+                <form data-bind="validate: true">
+                    <input class="required" data-bind="value: title, selected: isEditingListTitle, blurOnEnter: true" />
+                </form>
+            </header>
 
-@section scripts{
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //$("#top_menu").find("a").hover(function () {
-            //    $(this).addClass("shit", 1);
-            //})
+            <a href="#" class="deletelist" data-bind="click: $parent.deleteTodoList">X</a>
 
-
-            $("#page_current").click(function () {
-                var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
-                $body.animate({ scrollTop: '0' });
-                return false;
-            })
-
-            $(".content_read").click(function (e) {
-                
-            })
-            
-            $(".content").addClass("content_hide");
-        });
-
-        function showContent(contentId) {
-            //$(".content").addClass("content_hide");
-
-            var content = $("#content_" + contentId);
-            var curHeight = content.height();
-            content.css("height", "auto");
-            var autoHeight = content.height();
-            content.height(curHeight);
-           // content.removeClass("content_hide");
-            content.css("overflow", "auto");
-
-            $("#content_" + contentId).animate({ height: autoHeight});
-            
-            
-        }
-    </script>
-
-}
-
-
-<div class="site">
-    <header>
-      @*  <hgroup>
-            <h1>@ViewBag.Title</h1>
-        </hgroup>*@
-        <nav id="top_menu" class="nav-menu">
-            <ul>
+            <ul data-bind="foreach: todos">
                 <li>
-                    @Html.ActionLink("日志", "Index")
-                </li>
-                <li>
-                    @Html.ActionLink("相册", "Index", "Album")
+                    <input type="checkbox" data-bind="checked: isDone" />
+                    <input class="todoItemInput" type="text" data-bind="value: title, disable: isDone, blurOnEnter: true" />
+                    <a href="#" data-bind="click: $parent.deleteTodo">X</a>
+                    <p class="error" data-bind="visible: errorMessage, text: errorMessage"></p>
                 </li>
             </ul>
-        </nav>
-    </header>
 
-    <div class="main">
-        <div class="site-content">
-            <div class="">
+            <form data-bind="submit: addTodo">
+                <input class="addTodo" type="text" data-bind="value: newTodoTitle, placeholder: 'Type here to add', blurOnEnter: true, event: { blur: addTodo }" />
+            </form>
 
-                @if (Model.Posts.Count > 0)
-                {
-                    foreach (var item in Model.Posts)
-                    {
-                    @Html.Partial("_PostInfo", item)
-                    }
-                }
-                else
-                {
-                    <span>找不到相关文章</span>
-                }
-
-            </div>
-        </div>
-        <div>
-            @Html.Partial("_Widget", Model)
-        </div>
+            <p class="error" data-bind="visible: errorMessage, text: errorMessage"></p>
+        </article>
+    </section>
+}
+else
+{
+    <div class="todoList" id="loginPanel">
+        <section id="localLoginPanel">
+            <h2>Log in</h2>
+            @Html.Partial("_Login")
+        </section>
+        <section id="socialLoginPanel">
+            <h2>Log in using another service</h2>
+            @Html.Action("ExternalLoginsList", "Account", new { ReturnUrl = ViewBag.ReturnUrl })
+        </section>
+        <p>First time here? <a id="showRegister">Sign up</a></p>
     </div>
-
-    <div class="page_nav">
-        <ul>
-            @for (int i = 1; i <= ViewBag.PageCount; i++)
-            {
-                <li>@Html.ActionLink(i.ToString(), "Index", "Home", new { p = i }, ViewBag.CurrentPage == i ? new { id = "page_current", @class = "page_current" } : null)</li>
-            }
-        </ul>
+    <div class="todoList" id="registerPanel">
+        <h2>Sign up</h2>
+        @Html.Partial("_Register")
+        <p>Already signed up? <a id="showLogin">Log in</a></p>
     </div>
-
+}
 </div>
 
-
-
-@*<h3>We suggest the following:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-    </li>
-
-    <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
-    </li>
-
-    <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
-    </li>
-</ol>*@
+@if (@User.Identity.IsAuthenticated)
+{
+    @section scripts {
+        @Scripts.Render("~/bundles/knockout")
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/todo")
+    }
+}
