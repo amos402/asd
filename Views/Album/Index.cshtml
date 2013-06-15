@@ -4,44 +4,98 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@Scripts.Render("~/Scripts/lightbox/script")
+@Styles.Render("~/Content/lightbox/css")
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th></th>
-    </tr>
+@section scripts{
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-           <a href="~/Album/Details/@item.Id"><img src="/Album/GetImage/@item.Id" /></a>
-           
-            
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+    <script type="text/javascript">
+        $(function () {
+
+        });
+    </script>
+
 }
 
-</table>
+
+<style type="text/css">
+    #lightbox .lb-closeContainer a:hover {
+        background-color: rgb(51, 51, 51);
+    }
+</style>
+
+
+<div class="site">
+
+    @Html.Partial("_Navigation")
+
+    @if (Roles.IsUserInRole("Admin"))
+    {
+        <p>
+            @Html.ActionLink("上传", "Create")
+        </p>
+    }
+
+
+
+    @{int count = 0;
+      bool flag = false;
+      int init = 3;
+      int len = Model.Count();
+      int colCount = 5;
+      int rowCount = 0;
+      int lastCount = 0;
+      if (len > colCount)
+      {
+          if (len % colCount == 0)
+          {
+              rowCount = len / colCount;
+              lastCount = colCount;
+          }
+          else
+          {
+              rowCount = len / colCount + 1;
+              lastCount = len % colCount;
+          }
+
+      }
+      else
+      {
+          rowCount = 1;
+          colCount = len;
+      }
+    }
+
+
+    <div class="album_wrapper">
+        @for (int i = 0; i < rowCount; i++)
+        {
+            <div class="row">
+                @for (int j = 0; j < colCount && (colCount == len || i != rowCount - 1 || j < lastCount); j++)
+                {
+                    var item = Model.ElementAt(i * colCount + j);
+                    <div class="image">
+                        <a  href="~/Album/Details/@item.Id" title="@item.Title" rel="lightbox[plants]">
+                            <div class="image_wapper">
+                                <img src="/Album/GetImage/@item.Id" /></div>
+                        </a>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+
+    @*    @for (int i = 1; i <= rowCount; i++)
+    {
+        @foreach (var item in Model.Take(i * colCount).Take(colCount))
+        {
+<div class="image">
+            <a  href="~/Album/Details/@item.Id" title="" rel="lightbox[plants]">
+                <img src="/Album/GetImage/@item.Id" /></a>
+        </div>
+        }
+    }*@
+
+
+</div>

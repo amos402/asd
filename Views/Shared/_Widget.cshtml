@@ -5,7 +5,7 @@
         @using (Html.BeginForm("Index", "Home", FormMethod.Get))
         { 
             <fieldset>
-                @Html.TextBox("keyword", null, new{@class="search_box"})
+                @Html.TextBox("keyword", null, new { @class = "search_box" })
                 <input value="搜索" type="submit">
             </fieldset>
         }
@@ -28,16 +28,16 @@
             @foreach (var item in Model.Comments)
             {
                 <li>
-                      <span>@Blog.Models.ModelHelper.GetUserNameForId(item.UserId)</span>
+                    <span>@Blog.Models.ModelHelper.GetUserNameForId(item.UserId)</span>
                     发表在
                     @{
-                        Blog.Models.Post post = Model.Posts.SingleOrDefault((T)=>T.Id==item.PostId);
-                        if (post != null)
-                        {
-                             @Html.ActionLink(post.Title, "Details", "Post", new { id = post.Id }, null)
-                        }
+                Blog.Models.Post post = Model.Posts.SingleOrDefault((T) => T.Id == item.PostId);
+                if (post != null)
+                {
+                        @Html.ActionLink(post.Title, "Details", "Post", new { id = post.Id }, null)
+                }
                     }
-                   
+
                 </li>
             }
         </ul>
@@ -45,14 +45,12 @@
     <aside id="archives-2" class="widget widget_archive">
         <h3 class="widget-title">文章归档</h3>
         <ul>
-            @{
-                var asd = from c in Model.Posts
-                          select c.Date;
-                          
-                          
-                }
-
-            <li><a href='http://localhost/wordpress/?m=201305' title='2013 年五月'>2013 年五月</a></li>
+            @foreach (var item in Model.ArchiveDateList)
+            {
+                string date = string.Format("{0}年{1}月", item.Year, item.Month);
+                <li>@Html.ActionLink(date, "Index", "Home", new { date = new DateTime(item.Year, item.Month, 1).ToBinary() }, null)</li>
+            
+            }
         </ul>
     </aside>
 </div>

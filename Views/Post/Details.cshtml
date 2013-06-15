@@ -1,7 +1,7 @@
 ﻿@model Blog.Models.Post
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Title;
 }
 
 @section scripts{
@@ -11,7 +11,7 @@
         });
 
         function replyComment(commentId, userName) {
-            var str = "回复" + userName;
+            var str = "取消回复" + userName;
             $("#reply_for").text(str);
             $("#reply_commentId").val(commentId);
             $("#comment_form").hide(400);
@@ -20,15 +20,24 @@
             return false;
         }
 
+        var msgItem = null;
+
         function hideMsg() {
-            // item.hide(1000);
-            $(event.srcElement).hide(500);
+            if (msgItem != null) {
+                setTimeout(function () {
+                    msgItem.hide(0, function () {
+                        msgItem.remove();
+                    });
+                }, 3000);
+            }
+            //$(event.srcElement).hide(500);
         }
 
         function OnEditCommentSuccess(id) {
             $("#comment_header_" + id).append("<span class='edit_success'>修改成功</span>");
             var msg = $("#comment_header_" + id).find(".edit_success");
             msg.hide();
+            msgItem = msg;
             msg.show(400, hideMsg);
         }
 
@@ -90,11 +99,8 @@
     }
 </style>
 
-
-<h2>Details</h2>
-
-<fieldset>
-    <legend>Post</legend>
+<div class="site">
+    @Html.Partial("_Navigation")
 
     <div class="main">
         <div class="site-content">
@@ -103,7 +109,7 @@
             </div>
 
 
-            <div class="commemt">
+            <div class="comment">
                 <h2>《@Html.DisplayTextFor(model => model.Title)》上有
                 @Html.DisplayTextFor(model => model.Comments.Count)条评论
                 </h2>
@@ -209,4 +215,4 @@
         </div>
 
     </div>
-</fieldset>
+</div>

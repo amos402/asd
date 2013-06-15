@@ -17,8 +17,11 @@ body {
 
 .site {
     margin: 0px auto;
+   
     overflow: hidden;
     background-color: rgb(255, 255, 255);
+    -webkit-box-shadow: 0px 2px 6px rgba(100, 100, 100, 0.3);
+    box-shadow: 0px 2px 6px rgba(100, 100, 100, 0.3);
 }
 
 
@@ -99,6 +102,7 @@ body {
 
 
 .main {
+    -webkit-box-shadow: 0px 2px 6px rgba(100, 100, 100, 0.3);
     box-shadow: 0px 2px 6px rgba(100, 100, 100, 0.3);
     background-color: white;
     margin: 0px auto;
@@ -136,8 +140,12 @@ body {
     .site-content article {
         margin-bottom: 10px;
         border-bottom: 4px double rgb(237, 237, 237);
+        -ms-word-wrap: break-word;
         word-wrap: break-word;
         -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
     }
 
     .site-content .content {
@@ -164,46 +172,52 @@ body {
         float:left;
     }*/
 
-.commemt {
+.comment {
     float: left;
 }
 
-    .commemt article {
+    .comment article {
         padding-bottom: 10px;
         margin-bottom: 10px;
         border-bottom: 4px double rgb(237, 237, 237);
     }
 
-        .commemt article header {
+        .comment article header {
             padding-left: 12px;
             background: none repeat scroll 0% 0% rgb(244, 244, 244);
             border: 1px solid rgb(204, 204, 204);
             margin-top: 8px;
         }
 
-            .commemt article header .reply {
+            .comment article header .reply {
                 text-align: right;
             }
 
-        .commemt article section {
+        .comment article section {
             font-size: 1.1em;
             margin: 8px auto;
         }
 
-        .commemt article .date {
+        .comment article .date {
             font-size: 0.9em;
         }
 
-      .commemt .edit_success{
-          color: rgb(0, 114, 198);
-      }
-
-    .commemt ul {
-        list-style: none outside none;
+    .comment .edit_success {
+        color: rgb(0, 114, 198);
     }
+
+    .comment ul, .comment ol {
+        list-style: none outside none;
+     
+    }
+     .comment ol {
+           position:relative;
+        left:-25px;
+     }
 
 #comment {
     float: left;
+    margin-bottom:10px;
 }
 
 .widget-area {
@@ -214,7 +228,11 @@ body {
 
     .widget-area .widget {
         -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
         margin-bottom: 3.42857rem;
+        -ms-word-wrap: break-word;
         word-wrap: break-word;
         float: none;
     }
@@ -256,7 +274,7 @@ body {
     list-style: none outside none;
 }
 
-.pager ul li {
+.page_nav ul li {
     display: inline-block;
 }
 
@@ -294,11 +312,57 @@ body {
             text-decoration: none;
             padding: 9px 30px;
         }
+
             .nav-menu ul li a:hover {
-                color:black;
+                color: black;
                 background-color: rgb(238, 238, 238);
             }
 
+
+.album_wrapper {
+    display: table;
+    margin: 10px 20px;
+}
+
+    .album_wrapper .row {
+        display: table-row;
+    }
+
+    .album_wrapper .image {
+        /*float:left;*/
+        width: 300px;
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+        .album_wrapper .image a {
+            display: block;
+        }
+
+            .album_wrapper .image a:hover {
+                background: none;
+            }
+
+
+            .album_wrapper .image a img {
+                border: 1px solid rgb(193, 193, 193);
+                -moz-transition: background-color 0.5s;
+                -o-transition: background-color 0.5s;
+                -webkit-transition: background-color 0.5s;
+                transition: background-color 0.5s;
+                padding: 5px;
+
+                -webkit-box-shadow: 4px 5px 3px 0px rgba(85, 74, 74, 0.30);
+                box-shadow: 4px 5px 3px 0px rgba(85, 74, 74, 0.30);
+                border-radius:5px;
+            }
+
+                .album_wrapper .image a img:hover {
+                    background-color: rgb(234, 242, 250);
+                }
+
+
+/*-----------------------------------------------------------------------------------*/
 
 article {
     display: block;
@@ -752,6 +816,7 @@ button {
     width: auto;*/
     border: 1px solid rgb(210, 210, 210);
     border-radius: 3px 3px 3px 3px;
+    -webkit-box-shadow: 0px 1px 2px rgba(64, 64, 64, 0.1);
     box-shadow: 0px 1px 2px rgba(64, 64, 64, 0.1);
     cursor: pointer;
     width: auto;
