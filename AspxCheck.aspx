@@ -1,8 +1,8 @@
-<%
-'³Ë·çasp.netÌ½Õë
-'×÷ÕßQQ£º178575
-'×÷ÕßEMail£ºyliangcf@163.com
-'×÷ÕßÍøÕ¾£ºhttp://www.qqcf.com
+ï»¿<%
+'ä¹˜é£asp.netæ¢é’ˆ
+'ä½œè€…QQï¼š178575
+'ä½œè€…EMailï¼šyliangcf@163.com
+'ä½œè€…ç½‘ç«™ï¼šhttp://www.qqcf.com
 %>
 <%Response.ContentEncoding = System.Text.Encoding.GetEncoding("gb2312")%>
 <%@ Import Namespace="System" %>
@@ -21,9 +21,9 @@ Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs
   ServerVer.text=Environment.OSVersion.ToString()
 
   If Request.ServerVariables("HTTP_X_FORWARDED_FOR")<>"" And Request.ServerVariables("SERVER_PORT")<>80 Then
-   ServerIp.text = Request.ServerVariables("LOCAL_ADDR") & "&nbsp;&nbsp;[¹²ÏíIP,¶ÔÍâIPÊµ¼ÊÊÇ "&Request.ServerVariables("REMOTE_ADDR")&" Í¨¹ı¶Ë¿ÚÓ³ÉäÊµÏÖ·şÎñÆ÷¶Ë¿ÚºÍUrlÀïµÄ¶Ë¿Ú²»Ò»Ñù]"
+   ServerIp.text = Request.ServerVariables("LOCAL_ADDR") & "&nbsp;&nbsp;[å…±äº«IP,å¯¹å¤–IPå®é™…æ˜¯ "&Request.ServerVariables("REMOTE_ADDR")&" é€šè¿‡ç«¯å£æ˜ å°„å®ç°æœåŠ¡å™¨ç«¯å£å’ŒUrlé‡Œçš„ç«¯å£ä¸ä¸€æ ·]"
   Else
-   ServerIp.text = Request.ServerVariables("LOCAL_ADDR") & "&nbsp;&nbsp;[¶ÀÁ¢IP]"
+   ServerIp.text = Request.ServerVariables("LOCAL_ADDR") & "&nbsp;&nbsp;[ç‹¬ç«‹IP]"
   End if
 
   ServerDomain.text=Request.ServerVariables("SERVER_NAME")
@@ -65,47 +65,47 @@ Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs
 
 
  If ObjCheck("ADODB.RecordSet") Then
-  Obj_Access.Text="Ö§³Ö" & ObjVer("ADODB.RecordSet")
+  Obj_Access.Text="æ”¯æŒ" & ObjVer("ADODB.RecordSet")
  Else
-  Obj_Access.Text="²»Ö§³Ö"
+  Obj_Access.Text="ä¸æ”¯æŒ"
  End If
  
  If ObjCheck("Scripting.FileSystemObject") Then
-  Obj_Fso.Text="Ö§³Ö"
+  Obj_Fso.Text="æ”¯æŒ"
  Else
-  Obj_Fso.Text="²»Ö§³Ö"
+  Obj_Fso.Text="ä¸æ”¯æŒ"
  End If
  
  
  If ObjCheck("JMail.SmtpMail") Then
-  Obj_Jmail.Text="Ö§³Ö£¬°æ±¾£º" & ObjVer("JMail.SmtpMail") & DownStr
+  Obj_Jmail.Text="æ”¯æŒï¼Œç‰ˆæœ¬ï¼š" & ObjVer("JMail.SmtpMail") & DownStr
  Else
-  Obj_Jmail.Text="²»Ö§³Ö" & DownStr
+  Obj_Jmail.Text="ä¸æ”¯æŒ" & DownStr
  End If
  
  If ObjCheck("CDONTS.NewMail") Then
-  Obj_Cdonts.Text="Ö§³Ö£¬°æ±¾£º" & ObjVer("CDONTS.NewMail")
+  Obj_Cdonts.Text="æ”¯æŒï¼Œç‰ˆæœ¬ï¼š" & ObjVer("CDONTS.NewMail")
  Else
-  Obj_Cdonts.Text="²»Ö§³Ö"
+  Obj_Cdonts.Text="ä¸æ”¯æŒ"
  End If
  
  If ObjCheck("Persits.Jpeg") Then
-  Obj_AspJpeg.Text="Ö§³Ö£¬°æ±¾£º" & ObjVer("Persits.Jpeg") & DownStr
+  Obj_AspJpeg.Text="æ”¯æŒï¼Œç‰ˆæœ¬ï¼š" & ObjVer("Persits.Jpeg") & DownStr
  Else
-  Obj_AspJpeg.Text="²»Ö§³Ö" & DownStr
+  Obj_AspJpeg.Text="ä¸æ”¯æŒ" & DownStr
  End If
  
  If ObjCheck("Persits.Upload.1") Then
-  Obj_AspUpload.Text="Ö§³Ö£¬°æ±¾£º" & ObjVer("Persits.Upload.1") & DownStr
+  Obj_AspUpload.Text="æ”¯æŒï¼Œç‰ˆæœ¬ï¼š" & ObjVer("Persits.Upload.1") & DownStr
  Else
-  Obj_AspUpload.Text="²»Ö§³Ö" & DownStr
+  Obj_AspUpload.Text="ä¸æ”¯æŒ" & DownStr
  End If
  
  
  If ObjCheck("ADODB.RecordSet") Then
-  Obj_Access.Text="Ö§³Ö"
+  Obj_Access.Text="æ”¯æŒ"
  Else
-  Obj_Access.Text="²»Ö§³Ö"
+  Obj_Access.Text="ä¸æ”¯æŒ"
  End If
  
  
@@ -120,11 +120,11 @@ Catch ex As Exception
 End Try
 
 If Flag=True Then
- Obj_Write.Text="<b>Ö§³Ö</b>"
+ Obj_Write.Text="<b>æ”¯æŒ</b>"
 
  System.IO.File.Delete(System.Web.HttpContext.Current.Server.MapPath("AspxCheck_Temp.htm"))
 Else
- Obj_Write.Text="<font color='ff0000'><b>²»Ö§³Ö</b></font>"
+ Obj_Write.Text="<font color='ff0000'><b>ä¸æ”¯æŒ</b></font>"
 End If
 
 
@@ -136,9 +136,9 @@ Private Sub SelfObjChk_Click(ByVal sender As System.Object, ByVal e As System.Ev
  ObjName = Trim(SelObj.value)
 
  If ObjCheck(ObjName) Then
-  Obj_SelfObj.Text="Ö§³Ö£¬°æ±¾£º" & ObjVer(ObjName)
+  Obj_SelfObj.Text="æ”¯æŒï¼Œç‰ˆæœ¬ï¼š" & ObjVer(ObjName)
  Else
-  Obj_SelfObj.Text="²»Ö§³Ö"
+  Obj_SelfObj.Text="ä¸æ”¯æŒ"
  End If
 
 End Sub
@@ -171,7 +171,7 @@ End Function
 </Script>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
-<html><head><title>³Ë·çasp.netÌ½Õë V1.2</title>
+<html><head><title>ä¹˜é£asp.netæ¢é’ˆ V1.2</title>
 <meta http-equiv=content-type content="text/html; charset=gb2312">
 <style type="text/css">
 body {text-align: left; font-family:Arial; margin:0; padding:0; background: #FFF; font-size:12px; color:#333333;}
@@ -268,155 +268,155 @@ table{font-size:12px;}
 
 
 <tr class="tr_1"> 
-      <td colspan="2">Ğ´ÈëÈ¨ÏŞ</td>
+      <td colspan="2">å†™å…¥æƒé™</td>
     </tr>
     <tr>
-      <td>¿Õ¼äÊÇ·ñÖ§³ÖĞ´Èë£º</td>
+      <td>ç©ºé—´æ˜¯å¦æ”¯æŒå†™å…¥ï¼š</td>
       <td><asp:label ID="obj_write" runat="server" /><br />
         <br />
-        Ğ´ÈëÈ¨ÏŞËµÃ÷£º
-ÓĞĞ©¿Õ¼äÉÌµÄ¿Õ¼ä¿´ÆğÀ´ÓÃÒ»Ğ©asp.netÌ½ÕëÔËĞĞÕı³££¬ÆäÊµÖ»ÊÇÑéÖ¤ÁËasp.net¶Ô¿Õ¼äµÄ¶ÁÈ¡È¨ÏŞ£¬asp.netµÄĞ´ÈëÈ¨ÏŞ¿ÉÄÜÃ»ÓĞµÄ£¬ÒªÊÇ²»Ö§³Ö²î²»¶àËùÓĞÊ¹ÓÃµÄAccessÊı¾İ¿âµÄasp.net³ÌĞòÓÃ²»ÁË£¬Ò²Éú³É²»ÁË¾²Ì¬Ò³Ãæ¡£¡£Èç¹ûĞ´ÈëÈ¨ÏŞÎªÖ§³ÖµÄ»°»ù±¾Õâ¸ö¿Õ¼ä²Å¿ÉÒÔÕı³£Ê¹ÓÃ¡£</td>
+        å†™å…¥æƒé™è¯´æ˜ï¼š
+æœ‰äº›ç©ºé—´å•†çš„ç©ºé—´çœ‹èµ·æ¥ç”¨ä¸€äº›asp.netæ¢é’ˆè¿è¡Œæ­£å¸¸ï¼Œå…¶å®åªæ˜¯éªŒè¯äº†asp.netå¯¹ç©ºé—´çš„è¯»å–æƒé™ï¼Œasp.netçš„å†™å…¥æƒé™å¯èƒ½æ²¡æœ‰çš„ï¼Œè¦æ˜¯ä¸æ”¯æŒå·®ä¸å¤šæ‰€æœ‰ä½¿ç”¨çš„Accessæ•°æ®åº“çš„asp.netç¨‹åºç”¨ä¸äº†ï¼Œä¹Ÿç”Ÿæˆä¸äº†é™æ€é¡µé¢ã€‚ã€‚å¦‚æœå†™å…¥æƒé™ä¸ºæ”¯æŒçš„è¯åŸºæœ¬è¿™ä¸ªç©ºé—´æ‰å¯ä»¥æ­£å¸¸ä½¿ç”¨ã€‚</td>
     </tr>
 	
 	<tr class="tr_1"> 
-      <td colspan="2">»ù±¾ĞÅÏ¢</td>
+      <td colspan="2">åŸºæœ¬ä¿¡æ¯</td>
     </tr>
     <tr>
-      <td >·şÎñÆ÷Ãû³Æ£º</td>
+      <td >æœåŠ¡å™¨åç§°ï¼š</td>
       <td><asp:label ID="ServerName" runat="server" /></td>
     </tr>
     <tr> 
-      <td width="150" >²Ù×÷ÏµÍ³ £º</td>
+      <td width="150" >æ“ä½œç³»ç»Ÿ ï¼š</td>
       <td><asp:label ID="ServerVer" runat="server" /></td>
     </tr>
     <tr>
-      <td >·şÎñÆ÷IP£º</td>
+      <td >æœåŠ¡å™¨IPï¼š</td>
       <td><asp:label ID="ServerIP" runat="server" /></td>
     </tr>
     <tr>
-      <td >·şÎñÆ÷ÓòÃû£º</td>
+      <td >æœåŠ¡å™¨åŸŸåï¼š</td>
       <td><asp:label ID="ServerDomain" runat="server" /></td>
     </tr>
     <tr>
-      <td >·şÎñÆ÷¶Ë¿Ú£º</td>
+      <td >æœåŠ¡å™¨ç«¯å£ï¼š</td>
       <td><asp:label ID="ServerPort" runat="server" /></td>
     </tr>
     <tr>
-      <td >·şÎñ¶Ë½Å±¾Ö´ĞĞ³¬Ê±£º</td>
-      <td><asp:label ID="ServerOutTime" runat="server" />Ãë</td>
+      <td >æœåŠ¡ç«¯è„šæœ¬æ‰§è¡Œè¶…æ—¶ï¼š</td>
+      <td><asp:label ID="ServerOutTime" runat="server" />ç§’</td>
     </tr>
     <tr>
-      <td >·şÎñÆ÷ÏÖÔÚÊ±¼ä£º</td>
+      <td >æœåŠ¡å™¨ç°åœ¨æ—¶é—´ï¼š</td>
       <td><asp:label ID="ServerNow" runat="server" /></td>
     </tr>
 	
     <tr>
-      <td >Session×ÜÊı£º</td>
+      <td >Sessionæ€»æ•°ï¼š</td>
       <td><asp:label ID="ServerSessionTotal" runat="server" /></td>
     </tr>
     <tr>
-      <td >Application×ÜÊı£º</td>
+      <td >Applicationæ€»æ•°ï¼š</td>
       <td><asp:label ID="ServerApplicationTotal" runat="server" /></td>
     </tr>
 	
 	<tr> 
-      <td>IIS°æ±¾ £º</td><td><asp:label ID="IISVer" runat="server" /></td>
+      <td>IISç‰ˆæœ¬ ï¼š</td><td><asp:label ID="IISVer" runat="server" /></td>
     </tr>
     <tr> 
-      <td>.NET Framework °æ±¾ £º</td><td><asp:label ID="NetVer" runat="server" /></td>
+      <td>.NET Framework ç‰ˆæœ¬ ï¼š</td><td><asp:label ID="NetVer" runat="server" /></td>
     </tr>
 	
     <tr> 
-      <td>Ïà¶ÔÂ·¾¶ £º</td><td><asp:label ID="ProPath" runat="server" /></td>
+      <td>ç›¸å¯¹è·¯å¾„ ï¼š</td><td><asp:label ID="ProPath" runat="server" /></td>
     </tr>
     <tr> 
-      <td>ÎïÀíÂ·¾¶ £º</td><td><asp:label ID="ProPath_2" runat="server" /></td>
+      <td>ç‰©ç†è·¯å¾„ ï¼š</td><td><asp:label ID="ProPath_2" runat="server" /></td>
     </tr>
     <tr> 
-      <td>ÔËĞĞÊ±¼ä £º</td><td><asp:label ID="ServerRunTime" runat="server" />Ğ¡Ê±</td>
+      <td>è¿è¡Œæ—¶é—´ ï¼š</td><td><asp:label ID="ServerRunTime" runat="server" />å°æ—¶</td>
     </tr>
     <tr class="tr_1"> 
-      <td colspan="2">ÏµÍ³×é¼şĞÅÏ¢</td>
+      <td colspan="2">ç³»ç»Ÿç»„ä»¶ä¿¡æ¯</td>
     </tr>
     <tr>
-      <td>AccessÊı¾İ¿â×é¼ş £º</td><td><asp:label ID="Obj_Access" runat="server" /></td>
+      <td>Accessæ•°æ®åº“ç»„ä»¶ ï¼š</td><td><asp:label ID="Obj_Access" runat="server" /></td>
     </tr>
     <tr>
-      <td>FSOÎÄ¼ş²Ù×÷×é¼ş £º</td><td><asp:label ID="Obj_Fso" runat="server" /></td>
+      <td>FSOæ–‡ä»¶æ“ä½œç»„ä»¶ ï¼š</td><td><asp:label ID="Obj_Fso" runat="server" /></td>
     </tr>
     
 	
 	<tr class="tr_1"> 
-      <td colspan="2">ÓÊ¼ş×é¼şĞÅÏ¢</td>
+      <td colspan="2">é‚®ä»¶ç»„ä»¶ä¿¡æ¯</td>
     </tr>
 	
 	<tr>
-      <td>JMAILÓÊ¼ş·¢ËÍ×é¼ş £º</td><td><asp:label ID="Obj_Jmail" runat="server" /></td>
+      <td>JMAILé‚®ä»¶å‘é€ç»„ä»¶ ï¼š</td><td><asp:label ID="Obj_Jmail" runat="server" /></td>
     </tr>
     <tr>
-      <td>CDONTSÓÊ¼ş·¢ËÍ×é¼ş £º</td><td><asp:label ID="Obj_Cdonts" runat="server" /></td>
+      <td>CDONTSé‚®ä»¶å‘é€ç»„ä»¶ ï¼š</td><td><asp:label ID="Obj_Cdonts" runat="server" /></td>
     </tr>
 	<tr class="tr_1"> 
-      <td colspan="2">Í¼Ïñ×é¼ş</td>
+      <td colspan="2">å›¾åƒç»„ä»¶</td>
     </tr>
 	<tr>
-      <td>AspJpeg×é¼ş £º</td><td><asp:label ID="Obj_AspJpeg" runat="server" /></td>
+      <td>AspJpegç»„ä»¶ ï¼š</td><td><asp:label ID="Obj_AspJpeg" runat="server" /></td>
     </tr>
 	
 	<tr class="tr_1"> 
-      <td colspan="2">ÎÄ¼şÉÏ´«×é¼ş</td>
+      <td colspan="2">æ–‡ä»¶ä¸Šä¼ ç»„ä»¶</td>
     </tr>
-	<tr><td>ASPUploadÉÏ´«×é¼ş £º</td><td><asp:label ID="obj_aspupload" runat="server" /></td>
+	<tr><td>ASPUploadä¸Šä¼ ç»„ä»¶ ï¼š</td><td><asp:label ID="obj_aspupload" runat="server" /></td>
     </tr>
 
 	<tr class="tr_1"> 
-      <td colspan="2">×Ô¶¨Òå×é¼ş</td>
+      <td colspan="2">è‡ªå®šä¹‰ç»„ä»¶</td>
     </tr>
 	
-    <tr><td>×Ô¶¨Òå×é¼ş²éÑ¯£º</td><td><INPUT TYPE="text" NAME="SelObj" id="SelObj" runat="server">&nbsp;<asp:button id="SelfObjChk" runat="server" Text="¼ì²â" OnClick="SelfObjChk_Click"></asp:button><asp:label ID="Obj_SelfObj" runat="server" />&nbsp;&nbsp;&nbsp;&nbsp;´Ë´¦±ØĞëÊ¹ÓÃ×é¼şµÄProgId»òClassIdÀ´¼ì²â</td>
+    <tr><td>è‡ªå®šä¹‰ç»„ä»¶æŸ¥è¯¢ï¼š</td><td><INPUT TYPE="text" NAME="SelObj" id="SelObj" runat="server">&nbsp;<asp:button id="SelfObjChk" runat="server" Text="æ£€æµ‹" OnClick="SelfObjChk_Click"></asp:button><asp:label ID="Obj_SelfObj" runat="server" />&nbsp;&nbsp;&nbsp;&nbsp;æ­¤å¤„å¿…é¡»ä½¿ç”¨ç»„ä»¶çš„ProgIdæˆ–ClassIdæ¥æ£€æµ‹</td>
     </tr>
 	
 	<tr class="tr_1"> 
-      <td colspan="2">ä¯ÀÀÕßĞÅÏ¢</td>
+      <td colspan="2">æµè§ˆè€…ä¿¡æ¯</td>
     </tr>
 	
-    <tr><td>ä¯ÀÀÕßipµØÖ·£º</td>
+    <tr><td>æµè§ˆè€…ipåœ°å€ï¼š</td>
       <td>&nbsp;<asp:label ID="Brower_IP" runat="server" />&nbsp;</td>
 	  </tr>
 
-    <tr><td>ä¯ÀÀÕß²Ù×÷ÏµÍ³£º</td>
+    <tr><td>æµè§ˆè€…æ“ä½œç³»ç»Ÿï¼š</td>
       <td>&nbsp;<asp:label ID="Brower_OSVer" runat="server" />&nbsp;</td>
     </tr>
 
-    <tr><td>ä¯ÀÀÆ÷£º</td>
+    <tr><td>æµè§ˆå™¨ï¼š</td>
       <td>&nbsp;<asp:label ID="Brower_Brower" runat="server" />&nbsp;</td>
     </tr>
 	  
-	      <tr><td>ä¯ÀÀÆ÷°æ±¾£º</td>
+	      <tr><td>æµè§ˆå™¨ç‰ˆæœ¬ï¼š</td>
       <td>&nbsp;<asp:label ID="Brower_BrowerVer" runat="server" />&nbsp;</td>
 	  </tr>
 	  
-	      <tr><td>JavaScript£º</td>
+	      <tr><td>JavaScriptï¼š</td>
       <td>&nbsp;<asp:label ID="Brower_Javscript" runat="server" />&nbsp;</td>
 	  </tr>
 	  
-	      <tr><td>VBScript£º</td>
+	      <tr><td>VBScriptï¼š</td>
       <td>&nbsp;<asp:label ID="Brower_VBScript" runat="server" />&nbsp;</td>
 	  </tr>
 	  
-	      <tr><td>JavaApplets£º</td>
+	      <tr><td>JavaAppletsï¼š</td>
       <td>&nbsp;<asp:label ID="Brower_JavaApplets" runat="server" />&nbsp;</td>
 	  </tr>
 	  
-	      <tr><td>Cookies£º</td>
+	      <tr><td>Cookiesï¼š</td>
       <td>&nbsp;<asp:label ID="Brower_Cookies" runat="server" />&nbsp;</td>
 	  </tr>
 	  
-	      <tr><td>ÓïÑÔ£º</td>
+	      <tr><td>è¯­è¨€ï¼š</td>
       <td>&nbsp;<asp:label ID="Brower_Language" runat="server" />&nbsp;</td>
 	  </tr>
 	  
-	      <tr><td>Frames£¨·ÖÀ¸£©:</td>
+	      <tr><td>Framesï¼ˆåˆ†æ ï¼‰:</td>
       <td>&nbsp;<asp:label ID="Brower_Frame" runat="server" />&nbsp;</td>
 	  </tr> 
 </table>
