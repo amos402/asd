@@ -29,6 +29,12 @@
         <p>
             发表于 @Html.DisplayTextFor(model => Model.Date)
         </p>
+        @if (Model.LastUpdate.HasValue && Model.LastUpdate.Value != Model.Date)
+        {
+            <p>
+                最后编辑于 @Html.DisplayTextFor(model => Model.LastUpdate)
+            </p>
+        }
         <p>
             @if (Model.Categories.Count > 0)
             {

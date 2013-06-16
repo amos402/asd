@@ -4,6 +4,7 @@
         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
             @Html.AntiForgeryToken()
             <a href="javascript:document.getElementById('logoutForm').submit()">注销</a>
+            @Html.ActionLink("个人信息","Edit", "User", new {id=WebSecurity.CurrentUserId },null)
         }
     </text>
 } else {

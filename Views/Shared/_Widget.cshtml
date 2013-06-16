@@ -14,7 +14,7 @@
         <h3 class="widget-title">近期文章</h3>
         <ul>
 
-            @foreach (var item in Model.Posts.Take(5))
+            @foreach (var item in Model.RecentPosts)
             {
                 <li>
                     @Html.ActionLink(item.Title, "Details", "Post", new { id = item.Id }, null)
@@ -30,13 +30,14 @@
                 <li>
                     <span>@Blog.Models.ModelHelper.GetUserNameForId(item.UserId)</span>
                     发表在
-                    @{
+                    @Html.ActionLink(item.Post.Title, "Details", "Post", new { id = item.Post.Id }, null)
+@*                    @{
                 Blog.Models.Post post = Model.Posts.SingleOrDefault((T) => T.Id == item.PostId);
                 if (post != null)
                 {
                         @Html.ActionLink(post.Title, "Details", "Post", new { id = post.Id }, null)
                 }
-                    }
+                    }*@
 
                 </li>
             }

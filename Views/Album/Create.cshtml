@@ -1,10 +1,10 @@
 ﻿@model Blog.Models.Album
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "新建图片";
 }
 
-<h2>Create</h2>
+<h2>新建图片</h2>
 
 @using (Html.BeginForm("Create", "Album", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -15,19 +15,19 @@
         <legend>Album</legend>
 
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Status)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.Status, ViewBag.Status as IEnumerable<SelectListItem>)
-            @Html.ValidationMessageFor(model => model.Status)
-        </div>
 
         <div class="editor-label">
             <label for="Title">标题</label>
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model=>model.Title)
+            @Html.EditorFor(model => model.Title)
+        </div>
+        <div class="editor-label">
+          <label for="Status">权限</label>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Status, ViewBag.Status as IEnumerable<SelectListItem>)
+            @Html.ValidationMessageFor(model => model.Status)
         </div>
 
         <div>

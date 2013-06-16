@@ -38,7 +38,15 @@
             var msg = $("#comment_header_" + id).find(".edit_success");
             msg.hide();
             msgItem = msg;
-            msg.show(400, hideMsg);
+            msg.fadeIn(1000, function () {
+                if (msg != null) {
+                    setTimeout(function () {
+                        msg.fadeOut(1000, function () {
+                            msg.remove();
+                        });
+                    }, 3000);
+                }
+            });
         }
 
         function showCommentForm() {
@@ -90,6 +98,14 @@
             $("#editCommentForm").show(400);
             content.hide();
         }
+
+        function deleteComment(id) {
+            $("#comment_row_" + id).find("article").hide(500, function () {
+                $("#comment_row_" + id).remove();
+            });
+            //$("#comment_row_" + id).remove();
+
+        }
     </script>
 }
 
@@ -108,7 +124,6 @@
                 @Html.Partial("_PostInfo", Model)
             </div>
 
-
             <div class="comment">
                 <h2>《@Html.DisplayTextFor(model => model.Title)》上有
                 @Html.DisplayTextFor(model => model.Comments.Count)条评论
@@ -116,7 +131,7 @@
                 <ol>
                     @foreach (var item in Model.Comments)
                     {
-                        <li>
+                        <li id="comment_row_@item.Id">
                             <article>
                                 <header id="comment_header_@item.Id">
                                     <img src="~/User/GetIcon/@item.UserId" height="32"/>
@@ -127,9 +142,23 @@
 
                                     <span class="date">发表于  @Html.DisplayFor(model => item.Date)
                                     </span>
+                                    @if (item.LastUpdate.HasValue && item.LastUpdate.Value != item.Date)
+                                    {
+                                        <span class="date">最后编辑于 @Html.DisplayFor(model => item.LastUpdate)
+                                        </span>
+                                    }
                                     @if (WebSecurity.CurrentUserId == item.UserId || Roles.IsUserInRole("Admin"))
                                     {
                                         <span><a href="javascript:void(0)" onclick="editComment(@item.Id)">编辑</a></span>
+                                        
+                                        @Ajax.ActionLink("删除", "Delete", "Comment", new { id = @item.Id }, new AjaxOptions
+                                   {
+                                       UpdateTargetId = "comment_row_" + item.Id.ToString(),
+                                       InsertionMode = InsertionMode.InsertAfter,
+                                       Confirm = "确定要删除此评论吗",
+                                       OnSuccess = string.Format("deleteComment({0})", item.Id)
+                                   })
+@*<span><a href="javascript:void(0)" onclick="deleteComment(@item.Id)">删除</a></span>*@
                                     }
 
                                     @if (WebSecurity.CurrentUserId != item.UserId)
